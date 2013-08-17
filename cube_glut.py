@@ -22,13 +22,13 @@ uniform mat4 u_view;
 uniform mat4 u_projection;
 
 attribute vec3 a_position;
-attribute vec2 a_texcoords;
+attribute vec2 a_texcoord;
 
-varying vec2 v_texcoords;
+varying vec2 v_texcoord;
 
 void main()
 {
-    v_texcoords = a_texcoords;
+    v_texcoord = a_texcoord;
     gl_Position = u_projection * u_view * u_model * vec4(a_position,1.0);
 }
 """
@@ -36,11 +36,11 @@ void main()
 
 FRAG_CODE = """
 uniform sampler2D u_texture;
-varying vec2 v_texcoords;
+varying vec2 v_texcoord;
 void main()
 {
-    float ty = v_texcoords.y;
-    float tx = sin(ty*20.0)*0.1 + v_texcoords.x;
+    float ty = v_texcoord.y;
+    float tx = sin(ty*20.0)*0.05 + v_texcoord.x;
     gl_FragColor = texture2D(u_texture, vec2(tx, ty));
 }
 """
@@ -141,7 +141,7 @@ class Canvas:
             gl.glBindBuffer(gl.GL_ARRAY_BUFFER, 0)  # 0 means do not use buffer
             gl.glVertexAttribPointer(loc, 3, gl.GL_FLOAT, False, 0, positions)
         #
-        loc = gl.glGetAttribLocation(self._prog_handle, 'a_texcoords')
+        loc = gl.glGetAttribLocation(self._prog_handle, 'a_texcoord')
         gl.glEnableVertexAttribArray(loc)
         if use_buffers:
             gl.glBindBuffer(gl.GL_ARRAY_BUFFER, self._texcoords_handle)
