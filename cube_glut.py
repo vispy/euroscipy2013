@@ -4,15 +4,18 @@
 Show spinning cube using VBO's, transforms and textures. 
 The use of vertex and element buffer can be turned on or off.
 
-This demo uses GLUT. It only uses vispy for the io and gl ES 2.0 namespace.
+This demo uses GLUT and does not depend on vispy.
 """
 
 import numpy as np
 import OpenGL.GLUT as glut
 from transforms import perspective, translate, rotate
 
-from vispy import gl  # import OpenGL.GL as gl  should work as well
-from vispy import io  # To load our data
+import OpenGL.GL as gl  # We only use the ES 2.0 subset
+# from vispy import gl
+
+import io  # Copied from vispy
+#from vispy import io 
 
 
 
