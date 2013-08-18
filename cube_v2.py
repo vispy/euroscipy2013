@@ -6,6 +6,7 @@ Show static cube using vertex arrays.
 
 import numpy as np
 from vispy import app, gl, oogl, io
+from transforms import translate, rotate, perspective
 
 
 VERT_CODE = """

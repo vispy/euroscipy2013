@@ -6,6 +6,7 @@ Template for the spinning cube demo.
 
 import numpy as np
 from vispy import app, gl, oogl, io
+from transforms import translate, rotate, perspective
 
 
 VERT_CODE = """
