@@ -51,8 +51,8 @@ faces_buffer = oogl.ElementBuffer(faces)
 
 class Canvas(app.Canvas):
     
-    def __init__(self):
-        app.Canvas.__init__(self)
+    def __init__(self, **kwargs):
+        app.Canvas.__init__(self, **kwargs)
         self.geometry = 0, 0, 400, 400
         
         self.program = oogl.ShaderProgram(  oogl.VertexShader(VERT_CODE),

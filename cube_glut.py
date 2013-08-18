@@ -14,7 +14,7 @@ from transforms import perspective, translate, rotate
 import OpenGL.GL as gl  # We only use the ES 2.0 subset
 # from vispy import gl
 
-import io  # Copied from vispy
+import vispy_io as io  # Copied from vispy
 #from vispy import io 
 
 
