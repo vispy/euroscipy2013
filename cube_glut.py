@@ -14,7 +14,7 @@ from transforms import perspective, translate, rotate
 import OpenGL.GL as gl  # We only use the ES 2.0 subset
 # from vispy import gl
 
-import vispy_io as io  # Copied from vispy
+import vispy_io as io
 #from vispy import io 
 
 
@@ -96,7 +96,7 @@ class Canvas:
             raise RuntimeError('Program did not link.')
         
         # Create texture
-        im = io.lena()
+        im = io.cat()
         self._tex_handle = gl.glGenTextures(1)
         gl.glPixelStorei(gl.GL_UNPACK_ALIGNMENT, 1)
         gl.glBindTexture(gl.GL_TEXTURE_2D, self._tex_handle)

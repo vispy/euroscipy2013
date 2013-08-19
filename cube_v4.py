@@ -5,7 +5,8 @@ Show spinning cube using VBO's, and transforms, and texturing.
 """
 
 import numpy as np
-from vispy import app, gl, oogl, io
+from vispy import app, gl, oogl
+import vispy_io as io  # Because vispy 0.1.0 lacks some data files
 from transforms import perspective, translate, rotate
 
 
@@ -46,7 +47,7 @@ void main()
 positions, faces, normals, texcoords = io.read_mesh('cube.obj')
 colors = np.random.uniform(0,1,positions.shape).astype('float32')
 
-faces_buffer = oogl.ElementBuffer(faces)
+faces_buffer = oogl.ElementBuffer(faces.astype(np.uint16))
 
 
 class Canvas(app.Canvas):
@@ -62,7 +63,7 @@ class Canvas(app.Canvas):
         self.program.attributes['a_position'] = oogl.VertexBuffer(positions)
         self.program.attributes['a_texcoord'] = oogl.VertexBuffer(texcoords)
         
-        self.program.uniforms['u_texture'] = oogl.Texture2D(io.lena())
+        self.program.uniforms['u_texture'] = oogl.Texture2D(io.cat())
         
         # Handle transformations
         self.init_transforms()

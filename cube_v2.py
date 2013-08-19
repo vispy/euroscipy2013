@@ -5,7 +5,8 @@ Show static cube using vertex arrays.
 """
 
 import numpy as np
-from vispy import app, gl, oogl, io
+from vispy import app, gl, oogl
+import vispy_io as io  # Because vispy 0.1.0 lacks some data files
 from transforms import translate, rotate, perspective
 
 
@@ -40,6 +41,7 @@ void main()
 # Read cube data
 positions, faces, normals, texcoords = io.read_mesh('cube.obj')
 colors = np.random.uniform(0,1,positions.shape).astype('float32')
+faces = faces.astype(np.uint16)
 
 
 class Canvas(app.Canvas):
